@@ -1,0 +1,20 @@
+---
+AllCops:
+  TargetRubyVersion: 2.4
+  
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - spec/**/*
+    - application/app.rb
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Max: 15
+
+Security/YAMLLoad:
+  Enabled: true
+  Exclude:
+    - spec/**/*
