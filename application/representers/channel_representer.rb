@@ -14,6 +14,6 @@ module LoyalFan
     property :title
     property :game
     property :viewer
-    collection :clips, extend: ClipRepresenter, class :OpenStruct
+    collection :clips, extend: ClipRepresenter, class: OpenStruct
   end
 end

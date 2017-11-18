@@ -11,7 +11,7 @@ module LoyalFan
     property :id
     property :unofficial_name
     property :official_name
-    collection :clips, extend: ClipRepresenter, class :OpenStruct
-    collection :channels, extend: ChannelRepresenter, class :OpenStruct
+    collection :clips, extend: ClipRepresenter, class: OpenStruct
+    collection :channels, extend: ChannelRepresenter, class: OpenStruct
   end
 end
