@@ -21,16 +21,21 @@
   table class="table" id="repos_table"
     thead
       tr
-        th Repo Name
-        th Github URL
-        th Contributors
+        th Game Name
+        th Title
+        th Clip URL
     tbody
-      - game.each do |x|
+      - game.clips.each do |clip|
         tr
           td
             span
-              = x.title
-      
+              = game.official_name
+          td  
+            span 
+              = clip.title
+          td  
+            span  
+              = clip.url
       / - game.each do |repo|
       /   a repo
         / tr class="repo_row" id="repo[#{index}].row"
