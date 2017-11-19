@@ -1,13 +1,11 @@
 .container
-  - game.each do |x|
-    
-  form role="form" action="/repo" method='post' id='add-repo-form'
+  form role="form" action="/channel" method='post' id='add-repo-form'
     .row.vertical-align.query-bar
       .col-xs-2
         .text-right Streamer Name:
       .col-xs-8
         input{ 
-          type='text' name='name'
+          type='text' name='streamer_name'
           id='streamer_name_input' class="form-control"
           placeholder="e.g. shroud"
         } 

@@ -22,13 +22,10 @@ module LoyalFan
         view 'home', locals: { game: games }
       end
 
-      routing.on 'game' do
+      routing.on 'channel' do
         routing.post do
-          gh_url = routing.params['github_url'].downcase
-          halt 400 unless (gh_url.include? 'github.com') &&
-                          (gh_url.split('/').count > 2)
-          ownername, reponame = gh_url.split('/')[-2..-1]
-          ApiGateway.new.create_repo(ownername, reponame)
+          streamer_name = routing.params['streamer_name'].downcase
+          ApiGateway.new.create_channel(streamer_name)
         end
       end
     end
