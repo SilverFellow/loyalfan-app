@@ -4,21 +4,21 @@
   form role="form" action="/repo" method='post' id='add-repo-form'
     .row.vertical-align.query-bar
       .col-xs-2
-        .text-right Github URL:
+        .text-right Streamer Name:
       .col-xs-8
         input{ 
-          type='text' name='github_url'
-          id='github_url_input' class="form-control"
-          placeholder="e.g.: https://www.github.com/soumyaray/YPBT-app"
+          type='text' name='name'
+          id='streamer_name_input' class="form-control"
+          placeholder="e.g. shroud"
         } 
       .col-xs-2
         button{ 
             type='submit' id='repo-form-submit' class='submit' 
             value='submit' class="btn btn-success" 
-          } + Add Repo
+          } Search
     .row
       .col-xs-12.blank-row
-  table class="table" id="repos_table"
+  table class="table" id="clips_table"
     thead
       tr
         th Game Name

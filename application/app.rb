@@ -15,11 +15,11 @@ module LoyalFan
 
       # GET / request
       routing.root do
-        repos_json = ApiGateway.new.game("csgo")
+        clips_json = ApiGateway.new.game('csgo')
         games = LoyalFan::GameRepresenter.new(OpenStruct.new)
-                                                .from_json repos_json
-        p games                                
-        view 'home', locals: { game: games}
+                                         .from_json(clips_json)
+        p games
+        view 'home', locals: { game: games }
       end
 
       routing.on 'game' do
