@@ -16,41 +16,4 @@
           } Search
     .row
       .col-xs-12.blank-row
-  table class="table" id="clips_table"
-    thead
-      tr
-        th Game Name
-        th Title
-        th Clip URL
-    tbody
-      - game.clips.each do |clip|
-        tr
-          td
-            span
-              = game.official_name
-          td  
-            span 
-              = clip.title
-          td  
-            span  
-              = clip.url
-      / - game.each do |repo|
-      /   a repo
-        / tr class="repo_row" id="repo[#{index}].row"
-        /   td
-        /     span class="repo_name" id="repo[#{index}].name"
-        /       a href="/repo/#{repo.owner.username}/#{repo.name}" id="repo[#{index}].link" #{repo.name}
-        /   td
-        /     span class="repo_gh_url" id="repo[#{index}].gh_url"
-        /       = repo.git_url
-        /   td
-        /     table id="repo[#{index}].contributors_table"
-        /       tr
-        /         td
-        /           span class="repo_table_owner" id="repo[#{index}].owner"
-        /             = "#{repo.owner.username} (#{repo.owner.email})"
-        /       - repo.contributors.each do |contrib|
-        /         tr
-        /           td
-        /             span class="repo_table_contributor" id="repo[#{index}].contributor"
-        /               = "#{contrib.username} (#{contrib.email})"
+  
