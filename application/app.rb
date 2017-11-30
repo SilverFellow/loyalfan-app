@@ -20,11 +20,6 @@ module LoyalFan
 
       # GET / request
       routing.root do
-        # clips_json = ApiGateway.new.channel('shroud')
-        # p clips_json
-        # games = LoyalFan::GameRepresenter.new(OpenStruct.new)
-                                        #  .from_json(clips_json)
-        # p games
         view 'home'
       end
 
@@ -35,21 +30,15 @@ module LoyalFan
           result_json = JSON.parse(result)
           if result_json.key?("error") # if error occur
             error_msg = result_json["error"].to_s[2...-2]
-            p error_msg
-            if error_msg.include?("not found")
-              flash[:error] = streamer_name+" "+error_msg.to_s
-              routing.redirect '/'
-            end
-            flash[:notice] = error_msg
-            routing.redirect "/channel/#{streamer_name}"
+            flash[:error] = streamer_name+" "+error_msg.to_s
+            routing.redirect '/'
           end
-          
+          routing.redirect "/channel/#{streamer_name}"
          end
 
         routing.on String do |streamer_name|
           clips_json = ApiGateway.new.channel(streamer_name)
-          games = LoyalFan::GameRepresenter.new(OpenStruct.new)
-                                           .from_json(clips_json)
+          games = LoyalFan::ChannelRepresenter.new(OpenStruct.new).from_json(clips_json)
           p games
           view 'channel', locals: { clip: games }
         

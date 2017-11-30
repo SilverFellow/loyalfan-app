@@ -19,21 +19,20 @@
   table class="table" id="clips_table"
     thead
       tr
-        th Game Name
+        th Streamer 
         th Title
-        th Clip URL
+        th Clip preview 
     tbody
       - clip.clips.each do |clip_data|
         tr
           td
             span
-              = clip.official_name
+              = clip.name
           td  
             span 
               = clip_data.title
           td  
-            span  
-              = clip_data.url
+            img alt=("Smiley face")  src=clip_data.preview  
       / - game.each do |repo|
       /   a repo
         / tr class="repo_row" id="repo[#{index}].row"
