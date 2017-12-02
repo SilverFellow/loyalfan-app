@@ -16,23 +16,27 @@
           } Search
     .row
       .col-xs-12.blank-row
-  table class="table" id="clips_table"
-    thead
-      tr
-        th Streamer 
-        th Title
-        th Clip preview 
-    tbody
-      - clip.clips.each do |clip_data|
+  -if channel.any?
+    table class="table" id="clips_table"
+      thead
         tr
-          td
-            span
-              = clip.name
-          td  
-            span 
-              = clip_data.title
-          td  
-            img  src=clip_data.preview  
+          th Streamer 
+          th Title
+          th Clip preview 
+      tbody
+        - channel.data.clips.each do |clip_data|
+          tr
+            td
+              span
+                = channel.name
+            td  
+              span 
+                = clip_data.title
+            td  
+              img  src=clip_data.preview  
+  - else
+    span 
+      = "No clips for this channel yet!"
       / - game.each do |repo|
       /   a repo
         / tr class="repo_row" id="repo[#{index}].row"

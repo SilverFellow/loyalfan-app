@@ -27,7 +27,6 @@ module LoyalFan
         routing.post do
           validated_input = Forms::UrlRequest.call(routing.params)
           result = AddChannel.new.call(validated_input)
-          # p result.value[:result]
 
           if result.success?
             flash[:notice] = 'Channel Found!'
@@ -41,8 +40,12 @@ module LoyalFan
 
         routing.on String do |streamer_name|
           clips_json = ApiGateway.new.channel(streamer_name)
-          games = LoyalFan::ChannelRepresenter.new(OpenStruct.new).from_json(clips_json)
-          view 'channel', locals: { clip: games }
+          info = LoyalFan::ChannelRepresenter.new(OpenStruct.new).from_json(clips_json)
+          clips = Views::AllClips.new(info)
+
+          if clips.none?
+          end
+          view 'channel', locals: { channel: clips }
         end
       end
     end
