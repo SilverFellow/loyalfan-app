@@ -25,23 +25,24 @@ module LoyalFan
 
       routing.on 'channel' do
         routing.post do
-          streamer_name = routing.params['streamer_name'].downcase
-          result = ApiGateway.new.create_channel(streamer_name)
-          result_json = JSON.parse(result)
-          if result_json.key?("error") # if error occur
-            error_msg = result_json["error"].to_s[2...-2]
-            flash[:error] = streamer_name+" "+error_msg.to_s
+          validated_input = Forms::UrlRequest.call(routing.params)
+          result = AddChannel.new.call(validated_input)
+          # p result.value[:result]
+
+          if result.success?
+            flash[:notice] = 'Channel Found!'
+          else
+            flash[:error] = result.value
             routing.redirect '/'
           end
+          streamer_name = result.value[:name]
           routing.redirect "/channel/#{streamer_name}"
-         end
+        end
 
         routing.on String do |streamer_name|
           clips_json = ApiGateway.new.channel(streamer_name)
           games = LoyalFan::ChannelRepresenter.new(OpenStruct.new).from_json(clips_json)
-          p games
           view 'channel', locals: { clip: games }
-        
         end
       end
     end
