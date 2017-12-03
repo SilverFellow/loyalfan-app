@@ -8,7 +8,7 @@ end
 
 desc 'run tests'
 Rake::TestTask.new(:spec) do |t|
-  t.pattern = 'spec/api_spec.rb'
+  t.pattern = 'spec/*_spec.rb'
   t.warning = false
 end
 
@@ -16,6 +16,16 @@ desc 'rerun tests'
 task :respec do
   sh "rerun -c 'rake spec' --ignore 'coverage/*'"
 end
+
+namespace :run do
+  task :dev do
+    sh 'rerun -c "rackup -p 9090"'
+  end
+  
+  task :test do
+    sh 'RACK_ENV=test rerun -c "rackup -p 9000"'
+  end
+end    
 
 task :console do
   sh 'pry -r ./spec/test_load_all'
