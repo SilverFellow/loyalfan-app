@@ -35,7 +35,7 @@ group :test do
 
   gem 'headless'
   gem 'watir'
-  gem 'chromedriver-helper', '~> 1.0'
+  gem 'chromedriver-helper', '~> 1.1'
 end
 
 group :development, :test do

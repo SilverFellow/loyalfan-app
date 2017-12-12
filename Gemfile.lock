@@ -184,7 +184,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  chromedriver-helper (~> 1.0)
+  chromedriver-helper (~> 1.1)
   dry-monads
   dry-transaction
   dry-validation

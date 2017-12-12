@@ -24,6 +24,10 @@ module LoyalFan
       call_api(:post, ['game', gamename])
     end
 
+    def delete_all_repos
+      call_api(:delete, 'channel')
+    end
+
     def call_api(method, resources)
       url_route = [@config.api_url, resources].flatten.join('/')
       result = HTTP.send(method, url_route)
