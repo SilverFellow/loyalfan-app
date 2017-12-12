@@ -6,18 +6,18 @@ describe 'Homepage' do
       LoyalFan::ApiGateway.new.delete_all_repos
       @headless = Headless.new
       @browser = Watir::Browser.new
-      @browser.goto 'http://local:9292'
+      # @browser.goto 'http://local:9292/'
     end
   end
   
   after do
     @browser.close
-    @headless.destroy
+    # @headless.destroy
   end
   
   describe 'Empty Homepage' do
     it '(Happy) should see correct elements' do
-      # @browser.goto homepage
+      @browser.goto homepage
 
       _(@browser.h1.text).must_equal 'LoyalFan'
       _(@browser.text_field(id: 'streamer_name_input').visible?).must_equal true
@@ -28,10 +28,10 @@ describe 'Homepage' do
   describe 'Search a channel' do
     it '(HAPPY) should input a valid channel name' do
       # GIVEN: user is on the home page
-      # @browser.goto homepage
+      @browser.goto homepage
 
       # WHEN: user enters a valid channel name
-      @browser.text_field(id: 'streamer_name_input').set('zoe_0601')
+      @browser.text_field(id: 'streamer_name_input').set('toyzttv')
       @browser.button(id: 'repo-form-submit').click
       _(@browser.div(id: 'flash_bar_danger').exists?).must_equal false
 
@@ -45,7 +45,7 @@ describe 'Homepage' do
     
     it '(BAD) should not accept incorrect channel name' do
       # GIVEN: user is on the home page
-      # browser.goto homepage
+      @browser.goto homepage
 
       # WHEN: user enters a invalid channel name
       @browser.text_field(id: 'streamer_name_input').set('fhdjhks')
