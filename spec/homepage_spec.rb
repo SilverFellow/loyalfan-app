@@ -3,7 +3,7 @@ require_relative 'spec_helper'
 describe 'Homepage' do
   before do
     unless @browser
-      LoyalFan::ApiGateway.new.delete_all_repos
+      # LoyalFan::ApiGateway.new.delete_all_repos
       @headless = Headless.new
       @browser = Watir::Browser.new
       # @browser.goto 'http://local:9292/'
