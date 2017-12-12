@@ -1,4 +1,4 @@
-.container
+.XDD
   form role="form" action="/channel" method='post' id='add-repo-form'
     .row.vertical-align.query-bar
       .col-xs-2
@@ -16,24 +16,31 @@
           } Search
     .row
       .col-xs-12.blank-row
+
+    .col-xs-2
+      span "wwwwwwww"
+    / Start of embeded Twitch
+    .col-xs-8
+      br
+      br
+      br
+      iframe allowfullscreen="true" frameborder="0" height="500" width="100%"scrolling="no" src="http://player.twitch.tv/?channel=shroud&muted=true" 
   -if channel.any?
-    table class="table" id="clips_table"
-      thead
-        tr
-          th Streamer 
-          th Title
-          th Clip preview 
-      tbody
-        - channel.data.clips.each do |clip_data|
+    .col-xs-2
+      span "asd"
+      table class="table" id="clips_table"
+        thead
           tr
-            td
-              span
-                = channel.name
-            td  
-              span 
-                = clip_data.title
-            td  
-              img  src=clip_data.preview  
+            / th Title
+            th Clip preview 
+        tbody
+          - channel.data.clips.each do |clip_data|
+            tr
+              / td  
+                span 
+                  = clip_data.title
+              td  
+                img  src=clip_data.preview  
   - else
     span 
       = "No clips for this channel yet!"

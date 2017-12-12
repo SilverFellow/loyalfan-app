@@ -10,7 +10,8 @@ html
       crossorigin="anonymous"
     }
     / Custom CSS
-    / link rel='stylesheet' href='/presentation/assets/css/style.css'
+    / link rel='stylesheet' href="presentation/assets/css/style.css"
+    link rel='stylesheet' href='https://bootswatch.com/4/sketchy/bootstrap.min.css'
     == assets(:css)
   body
     / JQuery and Bootstrap JS
@@ -24,13 +25,17 @@ html
       integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
       crossorigin="anonymous"
     }
+    script{
+      src="https://embed.twitch.tv/embed/v1.js"
+    }
 
-    .container id='html_body'
+    .xd id='html_body'
       section
         .row style="vertical-align: middle;"
           .col-xs-12
-            h1 
-              a href="/" LoyalFan
+            h1
+              .roger 
+                a href="/" LoyalFan
 
       section
         include :flash_bar

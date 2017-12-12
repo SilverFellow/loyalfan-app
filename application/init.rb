@@ -1,4 +1,5 @@
 # frozen_string_literal: false
+# folders = %w[representers forms services views controllers]
 folders = %w[representers forms services views]
 folders.each do |folder|
   require_relative "#{folder}/init.rb"
