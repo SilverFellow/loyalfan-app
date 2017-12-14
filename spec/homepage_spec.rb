@@ -4,9 +4,8 @@ describe 'Homepage' do
   before do
     unless @browser
       # LoyalFan::ApiGateway.new.delete_all_repos
-      @headless = Headless.new
+      # @headless = Headless.new
       @browser = Watir::Browser.new
-      # @browser.goto 'http://local:9292/'
     end
   end
   
@@ -16,45 +15,48 @@ describe 'Homepage' do
   end
   
   describe 'Empty Homepage' do
+    include PageObject::PageFactory
     it '(Happy) should see correct elements' do
-      @browser.goto homepage
-
-      _(@browser.h1.text).must_equal 'LoyalFan'
-      _(@browser.text_field(id: 'streamer_name_input').visible?).must_equal true
-      _(@browser.button(id: 'repo-form-submit').visible?).must_equal true
+      # GIVEN: user is on the home page without any input
+      visit HomePage do |page|
+        #THEN: user shpuld see basic headers, no clips
+        _(page.main_header).must_equal 'LoyalFan'
+        _(page.streamer_name_input_element.visible?).must_equal true
+        _(page.add_button_element.visible?).must_equal true
+        _(page.clips_table_element.exists?).must_equal false
+        _(page.warning_message_element.exists?).must_equal false
+      end
     end
   end
   
   describe 'Search a channel' do
+    include PageObject::PageFactory
     it '(HAPPY) should input a valid channel name' do
       # GIVEN: user is on the home page
-      @browser.goto homepage
+      visit HomePage do |page|
 
-      # WHEN: user enters a valid channel name
-      @browser.text_field(id: 'streamer_name_input').set('toyzttv')
-      @browser.button(id: 'repo-form-submit').click
-      _(@browser.div(id: 'flash_bar_danger').exists?).must_equal false
+        # WHEN: user enters a valid channel name
+        page.search_channel 'xargon0731'
 
-      # THEN: user should see the clips listed in a table
-      table = @browser.table(id: 'clips_table')
-      _(@browser.table(id: 'clips_table').exists?).must_equal true
-
-      row = table.rows[1]
-      _(table.rows.count).must_equal 11
+        # THEN: user should see the clips listed in a table
+        _(page.success_message).must_include 'Found'
+        _(page.clips_table_element.visible?).must_equal true
+        _(page.clips_listed_count).must_equal 10
+      end
     end
     
     it '(BAD) should not accept incorrect channel name' do
       # GIVEN: user is on the home page
-      @browser.goto homepage
+      visit HomePage do |page|
 
-      # WHEN: user enters a invalid channel name
-      @browser.text_field(id: 'streamer_name_input').set('fhdjhks')
-      @browser.button(id: 'repo-form-submit').click
-      _(@browser.div(id: 'flash_bar_danger').exists?).must_equal true
+        # WHEN: user enters a invalid channel name
+        page.search_channel 'asdfgh'
 
-      # THEN: user should see an error alert and no table created
-      _(@browser.div(id: 'flash_bar_danger').text).must_include 'not found'
-      _(@browser.table(id: 'clips_table').exists?).must_equal false
+        # THEN: user should see an error alert and no table created
+        _(page.warning_message_element.exists?).must_equal true
+        _(page.warning_message).must_include 'not found'
+        _(page.clips_table_element.exists?).must_equal false
+      end
     end
   end
 end

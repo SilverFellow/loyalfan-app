@@ -8,6 +8,9 @@ require 'headless'
 
 require './init.rb'
 
+require 'page-object'
+require_relative 'pages/init'
+
 HOST = 'http://localhost:9000'
 
 def homepage

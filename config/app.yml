@@ -3,3 +3,5 @@ development:
   api_url: http://localhost:3000/api/v0.1
 test:
   api_url: http://localhost:3000/api/v0.1
+  app_url: http://localhost:9000
+  
