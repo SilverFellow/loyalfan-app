@@ -1,13 +1,14 @@
-.XDD
+.channel_search_box
   form role="form" action="/channel" method='post' id='add-repo-form'
     .row.vertical-align.query-bar
+      .col-xs-1
       .col-xs-2
         .text-right Streamer Name:
-      .col-xs-8
+      .col-xs-5
         input{ 
           type='text' name='streamer_name'
           id='streamer_name_input' class="form-control"
-          placeholder="e.g. shroud"
+          placeholder="e.g. shroud" 
         } 
       .col-xs-2
         button{ 
@@ -39,8 +40,8 @@
               / td  
                 span 
                   = clip_data.title
-              td  id = 'td_preview_img'
-                img  src=clip_data.preview
+              td  
+                img  src=clip_data.preview  
   - else
     span 
       = "No clips for this channel yet!"

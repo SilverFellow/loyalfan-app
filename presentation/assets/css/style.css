@@ -1,7 +1,15 @@
 h1 {
   font-weight: bold;
 }
-
+.text-right{
+  font-size: 1.5em;  
+}
+.btn.btn-success{
+  font-size: 2em;
+}
+.form-control{
+  font-size: 1.5em;  
+}
 .posting.body {
   font-size: 1.2em;
 }
