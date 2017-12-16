@@ -32,11 +32,12 @@ module LoyalFan
         routing.redirect "/channel/#{streamer_name}"
       end
 
+      # Channel Data Presentation
       routing.on String do |streamer_name|
         clips_json = ApiGateway.new.channel(streamer_name)
         info = LoyalFan::ChannelRepresenter.new(OpenStruct.new).from_json(clips_json)
         clips = Views::AllClips.new(info)
-        p clips.any?
+        # p clips.any?
         if clips.none?
           p "ASD"
         end

@@ -19,29 +19,39 @@
       .col-xs-12.blank-row
 
     .col-xs-2
-      span "wwwwwwww"
+      .twitter
+        a {
+          href="https://twitter.com/shroud?ref_src=twsrc%5Etfw"
+          class = "twitter-timeline"
+        }Tweets bt CCTV
     / Start of embeded Twitch
     .col-xs-8
       br
       br
-      br
-      iframe allowfullscreen="true" frameborder="0" height="500" width="100%"scrolling="no" src="http://player.twitch.tv/?channel=shroud&muted=true" 
+      .myiframe
+        iframe allowfullscreen="true" frameborder="0" scrolling="no" id="stream_player" src=channel.channel_stream_url 
   -if channel.any?
     .col-xs-2
-      span "asd"
       table class="table" id="clips_table"
         thead
           tr
             / th Title
-            th Clip preview 
+            th {
+              style="font-size: 1.5em;"
+            }Clip preview 
         tbody
           - channel.data.clips.each do |clip_data|
             tr
-              / td  
-                span 
-                  = clip_data.title
-              td  
-                img  src=clip_data.preview  
+              td
+                span {
+                  style="font-size: 1.5em;"
+                }= clip_data.title
+                br
+                a href="../www.google.com"
+                  img{
+                    src=clip_data.preview  
+                    id="preview_img" 
+                  }
   - else
     span 
       = "No clips for this channel yet!"

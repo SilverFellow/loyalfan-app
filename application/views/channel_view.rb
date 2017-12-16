@@ -19,6 +19,11 @@ module LoyalFan
         @channel
       end
 
+      def channel_stream_url
+        # p @channel.url[21...-1]
+        "http://player.twitch.tv/?channel="+@channel.url[21..-1]+"&muted=true"
+      end
+      
       def name
         @channel.name
       end
