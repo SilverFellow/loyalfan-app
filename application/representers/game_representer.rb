@@ -9,8 +9,7 @@ module LoyalFan
     include Roar::JSON
 
     property :id
-    property :unofficial_name
-    property :official_name
+    property :name
     collection :clips, extend: ClipRepresenter, class: OpenStruct
     collection :channels, extend: ChannelRepresenter, class: OpenStruct
   end
