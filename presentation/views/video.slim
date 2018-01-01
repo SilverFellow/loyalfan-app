@@ -32,9 +32,11 @@
       br
       br
       .myiframe
-        iframe allowfullscreen="true" frameborder="0" scrolling="no" id="stream_player" src=channel.channel_stream_url 
+        - real_url = "https://clips.twitch.tv/embed?clip="+video_id+"&tt_medium=clips_api&tt_content=embed"
+        iframe allowfullscreen="true" frameborder="0" scrolling="no" id="stream_player" src=real_url
       br
       span = channel.loading?
+      span = 'clip test page'
       div class="loader"
       - if channel.loading?
         script src = "#{channel.ws_host}/faye.js"
@@ -59,7 +61,7 @@
               }Clip preview 
           tbody
             - channel.embed_clip.each do |clip_data|
-              -  tmp = name+"/video/"+clip_data[:url]
+              -  tmp = clip_data[:url]
               tr
                 td
                   span {
@@ -76,7 +78,7 @@
       = "No clips for this channel yet!"
       / - game.each do |repo|
       /   a repo
-        / tr class="repo_row" id="repo[#{index}].row"``
+        / tr class="repo_row" id="repo[#{index}].row"
         /   td
         /     span class="repo_name" id="repo[#{index}].name"
         /       a href="/repo/#{repo.owner.username}/#{repo.name}" id="repo[#{index}].link" #{repo.name}

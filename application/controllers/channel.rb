@@ -34,15 +34,30 @@ module LoyalFan
 
       # Channel Data Presentation
       routing.on String do |streamer_name|
-        clips_json = ApiGateway.new.channel(streamer_name)
-        info = LoyalFan::ChannelRepresenter.new(OpenStruct.new).from_json(clips_json)
-        clips = Views::AllClips.new(info)
-        # p clips.any?
-        if clips.none?
-          p "ASD"
+        routing.on 'video' do
+          routing.on String do |video_id|
+            clips_json = ApiGateway.new.channel(streamer_name)
+            info = LoyalFan::ChannelRepresenter.new(OpenStruct.new).from_json(clips_json)
+            clips = Views::AllClips.new(info)
+            view 'video', locals: { channel: clips ,name: streamer_name ,video_id: video_id}
+          end
         end
-        view 'channel', locals: { channel: clips }
+        p streamer_name
+        routing.get do
+          clips_json = ApiGateway.new.channel(streamer_name)
+          info = LoyalFan::ChannelRepresenter.new(OpenStruct.new).from_json(clips_json)
+          clips = Views::AllClips.new(info)
+          # p clips.any?
+          if clips.none?
+            p "ASD"
+          end
+          view 'channel', locals: { channel: clips ,name: streamer_name}
+        end
+
+        # START OF CLIP REPRESENTATION
+        
       end
+
     end
   end
 end

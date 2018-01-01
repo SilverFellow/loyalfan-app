@@ -1,6 +1,9 @@
 ---
 development:
-  api_url: http://localhost:3000/api/v0.1
+  # api_url: http://localhost:3000/api/v0.1
+  api_url:  https://loyalfan-twitchapi.herokuapp.com/api/v0.1
+  API_HOST: https://loyalfan-twitchapi.herokuapp.com
+  API_VER: api/v0.1
 test:
   api_url: http://localhost:3000/api/v0.1
   app_url: http://localhost:9000
