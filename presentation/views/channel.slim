@@ -37,12 +37,13 @@
       span = channel.loading?
       div class="loader"
       - if channel.loading?
-        script src = "#{channel.ws_host}/faye.js"
+        script src = "#{channel.ws_host}/faye/faye.js"
         javascript:
           var channel = "#{channel.ws_channel_id}";
           console.log(channel);
           var client = new Faye.Client("#{channel.ws_host}/faye");
           client.subscribe('/' + channel, function(message) {
+            alert('Got a message: ' + message.text);
             console.log("start");
             recipe_json = $.parseJSON(message);
             console.log(recipe_json);
