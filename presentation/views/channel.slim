@@ -35,19 +35,58 @@
         iframe allowfullscreen="true" frameborder="0" scrolling="no" id="stream_player" src=channel.channel_stream_url 
       br
       span = channel.loading?
-      div class="loader"
-      - if channel.loading?
-        script src = "#{channel.ws_host}/faye/faye.js"
-        javascript:
-          var channel = "#{channel.ws_channel_id}";
-          console.log(channel);
-          var client = new Faye.Client("#{channel.ws_host}/faye");
-          client.subscribe('/' + channel, function(message) {
-            alert('Got a message: ' + message.text);
-            console.log("start");
-            recipe_json = $.parseJSON(message);
-            console.log(recipe_json);
-          });
+      div id="parallel_card" style="height:500px;overflow:auto;"
+        div class="loader" id="loading"
+        - if channel.loading?
+          script src = "#{channel.ws_host}/faye/faye.js"
+          javascript:
+            var channel = "#{channel.ws_channel_id}";
+            console.log(channel);
+            var client = new Faye.Client("#{channel.ws_host}/faye");
+            client.subscribe('/' + channel, function(message) {
+              alert('Got a message: ' + message.text);
+              console.log("start");
+              response_json = JSON && JSON.parse(message) || $.parseJSON(message);
+              console.log(response_json.channels);
+              console.log(response_json.channels.length);
+              var response_length = response_json.channels.length
+              console.log(response_json.channels[0].logo);
+
+              $("#loading").remove();
+              for(i=0;i<response_length;i++){
+                console.log(i);
+                var mydiv = document.getElementById("parallel_card");
+                var mycard = document.createElement('div');
+                mycard.className = "card";
+                var card_img = document.createElement('img');
+                card_img.className = "card-img-top";
+                card_img.setAttribute('src',response_json.channels[i].logo);
+                var card_body = document.createElement('div');
+                card_body.className = "card-body";
+                
+                var card_title = document.createElement('h4');
+                card_title.className = "card-title";
+                card_title.innerHTML = response_json.channels[i].name
+                card_body.appendChild(card_title);
+
+                var card_text = document.createElement('p');
+                card_text.className = "card-text";
+                card_text.innerHTML = response_json.channels[i].title;
+                card_body.appendChild(card_text);
+
+                var card_link = document.createElement('a');
+                card_link.className = "btn btn-primary";
+                card_link.setAttribute('href',response_json.channels[i].url);
+                card_link.innerHTML = "Watch on Twitch !"
+                card_body.appendChild(card_link);
+
+                mycard.appendChild(card_img);
+                mycard.appendChild(card_body);
+                mydiv.appendChild(mycard);
+              }
+              console.log(response_json[0])
+            });
+        
   -if channel.any?
     .col-xs-2
       div style="height:1000px;overflow:auto;"

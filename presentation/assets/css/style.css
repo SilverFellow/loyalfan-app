@@ -98,3 +98,15 @@ footer {
   font-size:11px;
   color:rgb(100, 100, 100);
 }
+.card{
+  height:300px;
+  display:inline-block; 
+  padding: 5px; 
+  overflow-y: scroll; 
+  width: 200px;
+  margin-right: 20px;
+  margin-top: 30px;
+}
+.card-img-top{
+  height: auto;
+}
