@@ -21,9 +21,9 @@
     .col-xs-2
       .twitter
         a {
-          href="https://twitter.com/c9shroud?ref_src=twsrc%5Etfw"
+          href= channel.twitter_url
           class = "twitter-timeline"
-          data-tweet-limit = "5"
+          data-tweet-limit = "10"
           data-height="40"
           data-theme = "dark"
         }Tweets bt CCTV
@@ -35,8 +35,6 @@
         - real_url = "https://clips.twitch.tv/embed?clip="+video_id+"&tt_medium=clips_api&tt_content=embed"
         iframe allowfullscreen="true" frameborder="0" scrolling="no" id="stream_player" src=real_url
       br
-      span = channel.loading?
-      span = 'clip test page'
       div class="loader"
       - if channel.loading?
         script src = "#{channel.ws_host}/faye.js"
