@@ -5,6 +5,7 @@ require 'dry-validation'
 module LoyalFan
   module Forms
     UrlRequest = Dry::Validation.Form do
+      # URL_REGEX = %r{\w}
       URL_REGEX = %r{\w}
 
       required(:streamer_name).filled(format?: URL_REGEX)

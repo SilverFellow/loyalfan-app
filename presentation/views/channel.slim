@@ -72,11 +72,21 @@
                 card_text.innerHTML = response_json.channels[i].title;
                 card_body.appendChild(card_text);
 
-                var card_link = document.createElement('a');
-                card_link.className = "btn btn-primary";
-                card_link.setAttribute('href',response_json.channels[i].url);
-                card_link.innerHTML = "Watch on Twitch !"
-                card_body.appendChild(card_link);
+                
+
+                var card_link_form = document.createElement('form');
+                card_link_form.setAttribute("action", "/channel");
+                card_link_form.setAttribute("method", "post");
+
+                var card_link_btn = document.createElement('button');
+                card_link_btn.className = "btn btn-primary";
+                card_link_btn.setAttribute('value',response_json.channels[i].name);
+                card_link_btn.setAttribute('name','streamer_name');
+                card_link_btn.setAttribute('type',"submit");
+                card_link_btn.innerHTML = "Go to Stream";
+
+                card_link_form.appendChild(card_link_btn);
+                card_body.appendChild(card_link_form);
 
                 mycard.appendChild(card_img);
                 mycard.appendChild(card_body);
