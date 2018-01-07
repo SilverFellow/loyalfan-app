@@ -40,6 +40,10 @@ module LoyalFan
         "http://player.twitch.tv/?channel="+@channel.url[21..-1]+"&muted=true"
       end
       
+      def twitter_url
+        return "https://twitter.com/c9shroud?ref_src=twsrc%5Etfw" if @channel.name.eql? "shroud"
+        "https://twitter.com/"+@channel.name+"?ref_src=twsrc%5Etfw"
+      end
       def name
         @channel.name
       end

@@ -21,7 +21,7 @@
     .col-xs-2
       .twitter
         a {
-          href="https://twitter.com/c9shroud?ref_src=twsrc%5Etfw"
+          href= channel.twitter_url
           class = "twitter-timeline"
           data-tweet-limit = "5"
           data-height="40"
@@ -34,8 +34,7 @@
       .myiframe
         iframe allowfullscreen="true" frameborder="0" scrolling="no" id="stream_player" src=channel.channel_stream_url 
       br
-      span = channel.loading?
-      div id="parallel_card" style="height:500px;overflow:auto;"
+      div id="parallel_card" style="height:700px;overflow:hidden;"
         div class="loader" id="loading"
         - if channel.loading?
           script src = "#{channel.ws_host}/faye/faye.js"
@@ -44,7 +43,6 @@
             console.log(channel);
             var client = new Faye.Client("#{channel.ws_host}/faye");
             client.subscribe('/' + channel, function(message) {
-              alert('Got a message: ' + message.text);
               console.log("start");
               response_json = JSON && JSON.parse(message) || $.parseJSON(message);
               console.log(response_json.channels);
@@ -53,7 +51,7 @@
               console.log(response_json.channels[0].logo);
 
               $("#loading").remove();
-              for(i=0;i<response_length;i++){
+              for(i=0;(i<response_length)&&(i<4);i++){
                 console.log(i);
                 var mydiv = document.getElementById("parallel_card");
                 var mycard = document.createElement('div');
