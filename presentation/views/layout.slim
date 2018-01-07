@@ -29,15 +29,15 @@ html
       integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" 
       crossorigin="anonymous" 
     }
-    script{
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-      integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-      crossorigin="anonymous"
-    }
+    
     script{
       src="https://embed.twitch.tv/embed/v1.js"
     }
-
+    script{
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"
+    }
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
     .silver1 id='html_body'
       .no_footer
         section
@@ -47,11 +47,7 @@ html
                 .roger 
                   a href="/" LoyalFan
 
-        section
+        section style="height:760px;"
           include :flash_bar
           == yield
-      footer id='Footer'
-        p
-          = "."
-        .footer_text
-          = "LoylFan is made for demonstration purposes. We cannot warrant full correctness of all content. CodePraise uses cookies but does not track users or record behavior."
+      
