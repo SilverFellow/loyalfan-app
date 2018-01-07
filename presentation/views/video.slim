@@ -35,7 +35,7 @@
         - real_url = "https://clips.twitch.tv/embed?clip="+video_id+"&tt_medium=clips_api&tt_content=embed"
         iframe allowfullscreen="true" frameborder="0" scrolling="no" id="stream_player" src=real_url
       br
-      div class="loader"
+      
       - if channel.loading?
         script src = "#{channel.ws_host}/faye.js"
         javascript:
