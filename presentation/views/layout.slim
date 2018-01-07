@@ -38,17 +38,20 @@ html
       src="https://embed.twitch.tv/embed/v1.js"
     }
 
-    .xd id='html_body'
-      section
-        .row style="vertical-align: middle;"
-          .col-xs-12
-            h1 id='main_header'
-              .roger 
-                a href="/" LoyalFan
+    .silver1 id='html_body'
+      .no_footer
+        section
+          .row style="vertical-align: middle;"
+            .col-xs-12
+              h1 id='main_header'
+                .roger 
+                  a href="/" LoyalFan
 
-      section
-        include :flash_bar
-        == yield
-
-      footer
-        = "LoyalFan is made for demonstration purposes. We cannot warrant full correctness of all content. CodePraise uses cookies but does not track users or record behavior."
+        section
+          include :flash_bar
+          == yield
+      footer id='Footer'
+        p
+          = "."
+        .footer_text
+          = "LoylFan is made for demonstration purposes. We cannot warrant full correctness of all content. CodePraise uses cookies but does not track users or record behavior."

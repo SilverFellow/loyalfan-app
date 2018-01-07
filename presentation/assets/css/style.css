@@ -114,3 +114,9 @@ footer {
 .card-img-top{
   height: auto;
 }
+
+.twitter{
+  height: 1000px;
+  overflow: auto; 
+}
+

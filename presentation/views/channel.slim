@@ -23,7 +23,7 @@
         a {
           href= channel.twitter_url
           class = "twitter-timeline"
-          data-tweet-limit = "5"
+          data-tweet-limit = "10"
           data-height="40"
           data-theme = "dark"
         }Tweets bt CCTV
@@ -34,7 +34,7 @@
       .myiframe
         iframe allowfullscreen="true" frameborder="0" scrolling="no" id="stream_player" src=channel.channel_stream_url 
       br
-      div id="parallel_card" style="height:700px;overflow:hidden;"
+      div id="parallel_card" style="height:380px;overflow:hidden;"
         div class="loader" id="loading"
         - if channel.loading?
           script src = "#{channel.ws_host}/faye/faye.js"
